@@ -13,11 +13,6 @@ public class Crouch : MonoBehaviour
     {
         _originalHeight = _charController.height;
     }
-    
-    void Update()
-    {
-        
-    }
 
     private void OnCrouch()
     {
@@ -33,5 +28,10 @@ public class Crouch : MonoBehaviour
             _charController.height = _crouchHeight;
             Debug.Log("Player crouched down");
         }
+    }
+
+    private void OnJump()
+    {
+        Debug.Log("Player has jumped");
     }
 }
