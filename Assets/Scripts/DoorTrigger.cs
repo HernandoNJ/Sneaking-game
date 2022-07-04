@@ -12,6 +12,11 @@ public class DoorTrigger : MonoBehaviour
         if (other.GetComponent<DoorInteractor>())
         {
             door.SetActive(false);
+
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("Player: you've reached the goal");
+            }
         }
     }
 
