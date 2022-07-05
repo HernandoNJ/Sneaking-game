@@ -1,30 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DoorTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject door;
+    [FormerlySerializedAs("door")]
+    [SerializeField] private GameObject cube;
+    [SerializeField] private float timeToStay;
+    [SerializeField] private float currentTimeStayed;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<DoorInteractor>())
         {
-            door.SetActive(false);
+            currentTimeStayed += Time.deltaTime;
 
-            if (other.CompareTag("Player"))
+            if (currentTimeStayed > timeToStay)
             {
-                Debug.Log("Player: you've reached the goal");
+                cube.SetActive(true);
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<DoorInteractor>())
-        {
-            door.SetActive(true);
         }
     }
 }
