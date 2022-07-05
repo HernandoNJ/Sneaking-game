@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform point1;
     [SerializeField] private Transform point2;
+    [SerializeField] private Transform point3;
     [SerializeField] private float threshold = 0.5f;
 
     private Transform currentPoint;
@@ -18,6 +19,10 @@ public class EnemyController : MonoBehaviour
             if (currentPoint == point1)
             {
                 currentPoint = point2;
+            }
+            else if(currentPoint == point2)
+            {
+                currentPoint = point3;
             }
             else
             {
