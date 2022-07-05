@@ -6,6 +6,8 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject door;
+    [SerializeField] private GameObject youWin;
+    [SerializeField] private ParticleSystem youWinParticles;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +18,7 @@ public class DoorTrigger : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 Debug.Log("Player: you've reached the goal");
+                EnableWinUI(true);
             }
         }
     }
@@ -25,6 +28,14 @@ public class DoorTrigger : MonoBehaviour
         if (other.GetComponent<DoorInteractor>())
         {
             door.SetActive(true);
+            EnableWinUI(false);
         }
+    }
+
+    private void EnableWinUI(bool winUIEnabled)
+    {
+        youWin.SetActive(winUIEnabled);
+        if(winUIEnabled) youWinParticles.Play();
+        else youWinParticles.Stop();
     }
 }
