@@ -3,34 +3,52 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform point1;
-    [SerializeField] private Transform point2;
-    [SerializeField] private float threshold = 0.5f;
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private float _threshold = 0.5f;
+    [SerializeField] private PatrolRoute _patrolRoute;
 
-    private Transform currentPoint;
-    private bool moving = false;
+    private Transform _currentPoint;
+    private int _routeIndex;
+    private bool _moving;    
+    private bool _forwardsAlongPath = true;    
+
+    private void Start()
+    {
+        _currentPoint = _patrolRoute.route[_routeIndex];
+    }
 
     private void Update()
     {
-        if (!moving)
+        if (!_moving)
         {
-            if (currentPoint == point1)
-            {
-                currentPoint = point2;
-            }
-            else
-            {
-                currentPoint = point1;
-            }
-            
-            agent.SetDestination(currentPoint.position);
-            moving = true;
+            NextPatrolPoint();
+            _agent.SetDestination(_currentPoint.position);
+            _moving = true;
         }
 
-        if (moving && Vector3.Distance(transform.position, currentPoint.position) < threshold)
+        if (_moving && Vector3.Distance(transform.position, _currentPoint.position) < _threshold)
         {
-            moving = false;
+            _moving = false;
         }
+    }
+
+    private void NextPatrolPoint()
+    {
+        if (_forwardsAlongPath) _routeIndex++;
+        else _routeIndex--;
+
+        if (_routeIndex == _patrolRoute.route.Count)
+        {
+            if (_patrolRoute.patrolType == PatrolRoute.PatrolType.Loop) 
+                _routeIndex = 0;
+            else 
+            {
+                _forwardsAlongPath = false;
+                _routeIndex-=2;
+            }
+        }
+
+        if (_routeIndex == 0) _forwardsAlongPath = true;
+        _currentPoint = _patrolRoute.route[_routeIndex];
     }
 }
