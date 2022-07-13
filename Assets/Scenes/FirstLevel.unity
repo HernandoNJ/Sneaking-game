@@ -734,8 +734,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 643880787}
-  _threshold: 0.5
   _patrolRoute: {fileID: 1547294930}
+  _fov: {fileID: 643880792}
+  _state: 0
+  _threshold: 0.5
+  _waitTime: 2
 --- !u!195 &643880787
 NavMeshAgent:
   m_ObjectHideFlags: 0
