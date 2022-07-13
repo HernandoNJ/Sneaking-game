@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Team
     {
-        
+        Player,Enemy
     }
+    public Transform _head;
+    public Team team;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
