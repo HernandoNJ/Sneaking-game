@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    public List<Transform> visibleObjects;
+    public Creature creature;
+    
     [SerializeField] private Color _gizmoColor = Color.red;
     [SerializeField] private float _viewRadius = 6f;
     [SerializeField] private float _viewAngle = 30f;
-    [SerializeField] private Creature _creature;
     [SerializeField] private LayerMask _blockingLayers;
-
-    public List<Transform> visibleObjects;
-    //public Creature creature;
 
     private void Update()
     {
@@ -24,13 +23,13 @@ public class FieldOfView : MonoBehaviour
             if (!target.TryGetComponent(out Creature targetCreature))
                 continue;
 
-            if (_creature.team == targetCreature.team) continue;
+            if (creature.team == targetCreature.team) continue;
             
             Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < _viewAngle)
             {
-                Vector3 headPos = _creature._head.position;
+                Vector3 headPos = creature._head.position;
                 Vector3 targetHeadPos = targetCreature._head.transform.position;
 
                 Vector3 dirToTargetHead = (targetHeadPos - headPos).normalized;
