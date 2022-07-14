@@ -18,6 +18,7 @@ public class GameEventManager : MonoBehaviour
     private bool _isFadingIn;
     private FirstPersonController _fpController;
     private bool _isGoalReached;
+
     private float _fadeLevel;
 
     private void Start()
@@ -25,6 +26,11 @@ public class GameEventManager : MonoBehaviour
         FindEnemies();
         FindThePlayer();
         CanvasInitialValues();
+    }
+
+    private void Update()
+    {
+        CanvasFading();
     }
 
     private void FindEnemies()
@@ -58,11 +64,6 @@ public class GameEventManager : MonoBehaviour
         _successPanel.SetActive(false);
     }
 
-    private void Update()
-    {
-        CanvasFading();
-    }
-
     private void CanvasFading()
     {
         if (_isFadingIn)
@@ -79,6 +80,16 @@ public class GameEventManager : MonoBehaviour
         }
 
         _canvasGroup.alpha = _fadeLevel;
+    }
+
+    private void PlayerFound(Transform enemyThatFoundPlayer)
+    {
+        if (_isGoalReached) return;
+        _isFadingIn = true;
+        _failedPanel.SetActive(true);
+        _fpController.CinemachineCameraTarget.transform.LookAt(enemyThatFoundPlayer);
+        DeactivateInput();
+        PlayBGM(_caughtMusic);
     }
 
     public void GoalReached()
@@ -118,16 +129,6 @@ public class GameEventManager : MonoBehaviour
 
     private void EnemyReturnToPatrol()
     {
-    }
-
-    private void PlayerFound(Transform enemyThatFoundPlayer)
-    {
-        if (_isGoalReached) return;
-        _isFadingIn = true;
-        _failedPanel.SetActive(true);
-        _fpController.CinemachineCameraTarget.transform.LookAt(enemyThatFoundPlayer);
-        DeactivateInput();
-        PlayBGM(_caughtMusic);
     }
 
 }
