@@ -34,6 +34,7 @@ public class SoundEmitter : MonoBehaviour
         if (mag > _impulseThreshold || isPlayer)
         {
             _audioSource.Play();
+            onEmitSound.Invoke();
             
             Collider[] colliders = Physics.OverlapSphere(transform.position, _soundRadius);
 
