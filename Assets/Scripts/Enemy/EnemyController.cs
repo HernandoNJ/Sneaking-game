@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     private bool _forwardsAlongPath = true;
     private bool _playerFound;
     private float _waitTimer;
-    private int _routeIndex = 0;
+    private int _routeIndex;
 
     // [SerializeField] private Transform point1;
     // [SerializeField] private Transform point2;

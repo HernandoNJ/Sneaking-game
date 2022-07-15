@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7112342024667021460
+--- !u!1 &7963047633599813839
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7638049785876585006}
-  - component: {fileID: 6795956416220960139}
-  - component: {fileID: 8769881847392100673}
-  - component: {fileID: 7959396228558844793}
-  - component: {fileID: 7959396228558844794}
-  - component: {fileID: 7959396228558844792}
-  - component: {fileID: 7959396228558844790}
-  - component: {fileID: 7959396228558844791}
+  - component: {fileID: 7963047633599813835}
+  - component: {fileID: 7963047633599813834}
+  - component: {fileID: 7963047633599813837}
+  - component: {fileID: 7963047633599813836}
+  - component: {fileID: 7963047633599813832}
+  - component: {fileID: 7963047633599813830}
+  - component: {fileID: 7963047633599813833}
   m_Layer: 0
-  m_Name: sci-fi-barrel
-  m_TagString: Untagged
+  m_Name: Ball
+  m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7638049785876585006
+--- !u!4 &7963047633599813835
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
-  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 12.057, y: 1, z: -25.718}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_GameObject: {fileID: 7963047633599813839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.83, y: 1.146, z: -30.07}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
---- !u!33 &6795956416220960139
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7963047633599813834
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
-  m_Mesh: {fileID: 8108563764783910780, guid: 45bd195528f676f4db4f38be4293385f, type: 3}
---- !u!23 &8769881847392100673
+  m_GameObject: {fileID: 7963047633599813839}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7963047633599813837
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
+  m_GameObject: {fileID: 7963047633599813839}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,13 +85,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &7959396228558844793
+--- !u!135 &7963047633599813836
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7963047633599813839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7963047633599813832
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
+  m_GameObject: {fileID: 7963047633599813839}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -101,48 +113,18 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!64 &7959396228558844794
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8108563764783910780, guid: 45bd195528f676f4db4f38be4293385f, type: 3}
---- !u!208 &7959396228558844792
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.0025, y: 0.0025, z: 0.0050000004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0.0050000004}
-  m_TimeToStationary: 0.5
---- !u!82 &7959396228558844790
+  m_CollisionDetection: 3
+--- !u!82 &7963047633599813830
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
+  m_GameObject: {fileID: 7963047633599813839}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2307000954371609132, guid: 7ecc304a40cbbf94fb296635607042f2, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 99f452c15efae4e45bc87609d54fd457, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e89babf73eaf794438c8410273a5c431, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -152,8 +134,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 1.5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -228,20 +210,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7959396228558844791
+--- !u!114 &7963047633599813833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112342024667021460}
+  m_GameObject: {fileID: 7963047633599813839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fefd641ebde76e4d8f82c51bd31b033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundRadius: 12
-  _impulseThreshold: 2
+  _soundRadius: 10
+  _impulseThreshold: 0.5
   onEmitSound:
     m_PersistentCalls:
       m_Calls: []

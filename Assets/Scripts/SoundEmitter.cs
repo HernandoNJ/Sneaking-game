@@ -18,8 +18,16 @@ public class SoundEmitter : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if (_collisionTimer < 2f)
+            _collisionTimer += Time.deltaTime;
+    }
+
     private void OnCollisionEnter(Collision other)
     {
+        if(_collisionTimer < 2f) return;
+        
         var mag = other.impulse.magnitude;
         var isPlayer = other.gameObject.CompareTag("Player");
         
@@ -45,7 +53,7 @@ public class SoundEmitter : MonoBehaviour
 }
 
 
-// if(_collisionTimer < 2f) return;
+// 
 //
 // if (other.impulse.magnitude > _impulseThreshold || other.gameObject.CompareTag("Player"))
 // {
