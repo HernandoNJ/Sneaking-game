@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6176294712691260951}
   - component: {fileID: 8423426030342072697}
   - component: {fileID: 1390179608}
+  - component: {fileID: 402553005}
   m_Layer: 0
   m_Name: DoorTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6176294712691260951
 Transform:
@@ -58,6 +59,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 7539081798534286089}
+--- !u!114 &402553005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131579024212130678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f93e864f31ac7e4abdf11752c41e557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 7539081798534286089}
+  socket: {fileID: 0}
+  lightObject: {fileID: 0}
+  socketLight: {fileID: 0}
+  defaultColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  keycardLevel: 1
 --- !u!1 &4297042301774830371
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,9 +359,11 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 00000000
+  m_SelectedEdges:
+  - a: 0
+    b: 0
+  m_SelectedVertices: 0000000000000000
 --- !u!23 &7539081798534286101
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -373,7 +396,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -422,7 +445,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8364257051543642333
 Transform:
@@ -656,7 +679,24 @@ MonoBehaviour:
     m_ManualUV: 0
     elementGroup: -1
     m_TextureGroup: -1
-  - m_Indexes: 300000003100000032000000310000003300000032000000
+  - m_Indexes: 330000003300000033000000330000003300000033000000
+    m_SmoothingGroup: 0
+    m_Uv:
+      m_UseWorldSpace: 0
+      m_FlipU: 0
+      m_FlipV: 0
+      m_SwapUV: 0
+      m_Fill: 1
+      m_Scale: {x: 1, y: 1}
+      m_Offset: {x: 0, y: 0}
+      m_Rotation: 0
+      m_Anchor: 9
+    m_Material: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    m_SubmeshIndex: 0
+    m_ManualUV: 0
+    elementGroup: 0
+    m_TextureGroup: 1
+  - m_Indexes: 360000003700000035000000360000003500000034000000
     m_SmoothingGroup: 0
     m_Uv:
       m_UseWorldSpace: 0
@@ -675,29 +715,33 @@ MonoBehaviour:
     m_TextureGroup: -1
   m_SharedVertices:
   - m_Vertices: 00000000
-  - m_Vertices: 0100000030000000
+  - m_Vertices: 010000002c000000
   - m_Vertices: 0200000008000000
-  - m_Vertices: 0300000009000000100000002900000032000000
-  - m_Vertices: 040000002d000000
+  - m_Vertices: 030000000900000010000000250000002e000000
+  - m_Vertices: 0400000029000000
   - m_Vertices: 05000000
-  - m_Vertices: 060000000c00000011000000280000002f000000
+  - m_Vertices: 060000000c00000011000000240000002b000000
   - m_Vertices: 070000000d000000
   - m_Vertices: 0a000000
   - m_Vertices: 0b00000012000000
   - m_Vertices: 0e00000013000000
   - m_Vertices: 0f000000
-  - m_Vertices: 1400000031000000
+  - m_Vertices: 140000002d000000
   - m_Vertices: 15000000
-  - m_Vertices: 160000001c000000250000002b00000033000000
-  - m_Vertices: 170000001d000000
-  - m_Vertices: 18000000
-  - m_Vertices: 190000002c000000
-  - m_Vertices: 1a00000020000000
-  - m_Vertices: 1b00000021000000240000002a0000002e000000
-  - m_Vertices: 1e00000027000000
-  - m_Vertices: 1f000000
-  - m_Vertices: 22000000
-  - m_Vertices: 2300000026000000
+  - m_Vertices: 160000001800000021000000270000002f000000
+  - m_Vertices: 1700000019000000
+  - m_Vertices: 1a00000023000000
+  - m_Vertices: 1b000000
+  - m_Vertices: 1c000000
+  - m_Vertices: 1d00000020000000260000002a000000
+  - m_Vertices: 1e000000
+  - m_Vertices: 1f00000022000000
+  - m_Vertices: 2800000032000000
+  - m_Vertices: 33000000
+  - m_Vertices: 34000000
+  - m_Vertices: 35000000
+  - m_Vertices: 36000000
+  - m_Vertices: 37000000
   m_SharedTextures: []
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -724,10 +768,6 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -0.1}
   - {x: 0.5, y: 1.75, z: -0.1}
   - {x: 0, y: 1.75, z: -0.1}
-  - {x: 2, y: 0, z: -0.1}
-  - {x: 1.5, y: 0, z: -0.1}
-  - {x: 2, y: 1.75, z: -0.1}
-  - {x: 1.5, y: 1.75, z: -0.1}
   - {x: 0.5, y: 1.75, z: -0.1}
   - {x: 0, y: 1.75, z: -0.1}
   - {x: 0.5, y: 2, z: -0.1}
@@ -752,6 +792,14 @@ MonoBehaviour:
   - {x: 0.5, y: 0, z: -0.1}
   - {x: 0.5, y: 1.75, z: 0}
   - {x: 0.5, y: 1.75, z: -0.1}
+  - {x: 1.7875557, y: 1.2686348, z: -0.10000038}
+  - {x: 2, y: 0, z: -0.10000038}
+  - {x: 1.5, y: 0, z: -0.10000038}
+  - {x: 1.5, y: 1.2686348, z: -0.10000038}
+  - {x: 1.5, y: 0, z: -0.1018219}
+  - {x: 2, y: 0, z: -0.1018219}
+  - {x: 1.5, y: 1.75, z: -0.1018219}
+  - {x: 2, y: 1.75, z: -0.1018219}
   m_Textures0:
   - {x: 0, y: 0}
   - {x: -0.5, y: 0}
@@ -777,10 +825,6 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0.5, y: 1.75}
   - {x: 0, y: 1.75}
-  - {x: 2, y: 0}
-  - {x: 1.5, y: 0}
-  - {x: 2, y: 1.75}
-  - {x: 1.5, y: 1.75}
   - {x: 0.5, y: 1.75}
   - {x: 0, y: 1.75}
   - {x: 0.5, y: 2}
@@ -805,6 +849,14 @@ MonoBehaviour:
   - {x: -0.1, y: 0}
   - {x: 0, y: 1.75}
   - {x: -0.1, y: 1.75}
+  - {x: 1.7875557, y: 1.2686348}
+  - {x: 2, y: 0}
+  - {x: 1.5, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1.5, y: 0}
+  - {x: 2, y: 0}
+  - {x: 1.5, y: 1.75}
+  - {x: 2, y: 1.75}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -844,10 +896,6 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
@@ -860,6 +908,14 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 1, w: -1}
   - {x: 0, y: 0, z: 1, w: -1}
   - {x: 0, y: 0, z: 1, w: -1}
+  - {x: -0, y: 1, z: 0, w: 1}
+  - {x: -0, y: 1, z: 0, w: 1}
+  - {x: -0, y: 1, z: 0, w: 1}
+  - {x: NaN, y: NaN, z: NaN, w: 1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
+  - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
   m_UnwrapParameters:
     m_HardAngle: 88
@@ -870,9 +926,17 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 00000000
+  m_SelectedEdges:
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  m_SelectedVertices: 00000000000000000000000000000000
 --- !u!23 &8364257051543642328
 MeshRenderer:
   m_ObjectHideFlags: 0
