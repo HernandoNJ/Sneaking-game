@@ -1,12 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundEmitter : MonoBehaviour
 {
-    [SerializeField] private float _soundRadius = 5f;
-    [SerializeField] private float _impulseThreshold = 2f;
+    [SerializeField] private float soundRadius = 5f;
+    [SerializeField] private float checkRadius = 5f;
+    [SerializeField] private float impulseThreshold = 2f;
 
     private float _collisionTimer;
 
@@ -18,48 +18,46 @@ public class SoundEmitter : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         var mag = other.impulse.magnitude;
         var isPlayer = other.gameObject.CompareTag("Player");
-        
-        if (mag > _impulseThreshold || isPlayer)
+
+        if (mag > impulseThreshold || isPlayer)
         {
             _audioSource.Play();
-            
-            Collider[] colliders = Physics.OverlapSphere(transform.position, _soundRadius);
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, soundRadius);
 
             foreach (var col in colliders)
             {
-                if (col.TryGetComponent(out EnemyController enemy)) 
-                { enemy.InvestigatePoint(transform.position); }
+                if (col.gameObject.CompareTag("Geometry"))
+                {
+                    var newPos = colliders[0].transform.position;
+                    gameObject.transform.SetParent(col.transform);
+                }
+
+                if (col.TryGetComponent(out EnemyController enemy))
+                {
+                    enemy.InvestigatePoint(transform.position);
+                }
             }
         }
     }
 
+    private void CheckIfEnemy()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius);
+    }
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, _soundRadius);
+        Gizmos.DrawWireSphere(transform.position, soundRadius);
     }
 }
-
-
-// if(_collisionTimer < 2f) return;
-//
-// if (other.impulse.magnitude > _impulseThreshold || other.gameObject.CompareTag("Player"))
-// {
-//     _audioSource.Play();
-//     onEmitSound.Invoke();
-//     Debug.Log("Sound Emitter Collided with " + other.gameObject.name);
-//     Collider[] _colliders = Physics.OverlapSphere(transform.position, _soundRadius);
-//
-//     foreach (var col in _colliders)
-//     {
-//         if (col.TryGetComponent(out EnemyController enemyController))
-//         {
-//             enemyController.InvestigatePoint(transform.position);
-//         }
-//     }
-// }
-// }

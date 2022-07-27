@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
-    [SerializeField] private Transform _cameraPosition;
-    [SerializeField] private Transform _holdPosition;
-    [SerializeField] private float _grabRange = 2f;
-    [SerializeField] private float _throwForce = 20f;
-    [SerializeField] private float _snapSpeed= 40f;
+    [SerializeField] private Transform cameraPosition;
+    [SerializeField] private Transform holdPosition;
+    [SerializeField] private float grabRange = 2f;
+    [SerializeField] private float throwForce = 20f;
+    [SerializeField] private float snapSpeed= 40f;
 
-   [SerializeField] private Rigidbody _grabbedObject;
+   [SerializeField] private Rigidbody grabbedObject;
     private bool _grabPressed;
 
     private void FixedUpdate()
     {
-        if (_grabbedObject)
+        if (grabbedObject)
         {
-            _grabbedObject.velocity = (_holdPosition.position - _grabbedObject.transform.position) * _snapSpeed;
+            grabbedObject.velocity = (holdPosition.position - grabbedObject.transform.position) * snapSpeed;
         }
     }
 
@@ -24,7 +24,7 @@ public class Grab : MonoBehaviour
         if (_grabPressed)
         {
             _grabPressed = false;
-            if (!_grabbedObject) return;
+            if (!grabbedObject) return;
             
             DropGrabbedObject();
         }
@@ -38,30 +38,27 @@ public class Grab : MonoBehaviour
 
     private void CheckRaycastToGrabbable()
     {
-        if (Physics.Raycast(_cameraPosition.position, _cameraPosition.forward, out RaycastHit hit, _grabRange))
+        if (Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit hit, grabRange))
         {
             if (!hit.transform.gameObject.CompareTag("Grabbable")) return;
 
-            _grabbedObject = hit.transform.GetComponent<Rigidbody>();
-            _grabbedObject.transform.SetParent(_holdPosition);
+            grabbedObject = hit.transform.GetComponent<Rigidbody>();
+            grabbedObject.transform.SetParent(holdPosition);
         }
     }
 
     private void DropGrabbedObject()
     {
-        _grabbedObject.transform.parent = null;
-        _grabbedObject = null;
+        grabbedObject.transform.parent = null;
+        grabbedObject = null;
     }
 
     private void OnThrow()
     {
-        if (!_grabbedObject) return;
+        if (!grabbedObject) return;
         
-        _grabbedObject.AddForce(_cameraPosition.forward *_throwForce, ForceMode.Impulse);
+        grabbedObject.AddForce(cameraPosition.forward *throwForce, ForceMode.Impulse);
         
         DropGrabbedObject();
     }
 }
-
-// _grabPressed = !_grabPressed;
-// Debug.Log(_grabPressed?"Grabbing":"releasing");

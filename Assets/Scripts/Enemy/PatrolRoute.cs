@@ -11,7 +11,7 @@ public class PatrolRoute : MonoBehaviour
         PingPong = 1
     }
 
-    [SerializeField] private Color _patrolRouteColor = Color.yellow;
+    [SerializeField] private Color patrolRouteColor = Color.yellow;
     public PatrolType patrolType;
     public List<Transform> route;
 
@@ -44,7 +44,7 @@ public class PatrolRoute : MonoBehaviour
         Handles.Label(transform.position, gameObject.name);
 #endif
         
-        Gizmos.color = _patrolRouteColor;
+        Gizmos.color = patrolRouteColor;
 
         for (int i = 0; i < route.Count - 1; i++) 
             Gizmos.DrawLine(route[i].position, route[i + 1].position);
