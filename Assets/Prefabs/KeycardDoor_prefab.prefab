@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1115713328093564381
 Transform:
@@ -550,7 +550,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -599,7 +599,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1425445181485803016
 Transform:
@@ -908,7 +908,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2098621626307999283
 Transform:
@@ -999,14 +999,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f93e864f31ac7e4abdf11752c41e557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 1115713328093564380}
-  socket: {fileID: 8892357622857700042}
+  door: {fileID: 1425445181485803017}
+  keyCardLevel: 1
   lightObject: {fileID: 8892357622207878627}
   socketLight: {fileID: 8892357621316125743}
+  socket: {fileID: 8892357622857700042}
   defaultColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   errorColor: {r: 1, g: 0, b: 0, a: 1}
   successColor: {r: 0, g: 1, b: 0, a: 1}
-  keycardLevel: 1
 --- !u!1 &8892357621316125745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,8 +1050,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.94456303, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 2
+  m_Intensity: 0.5
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1652,7 +1652,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1929,7 +1929,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1986,7 +1986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8892357622857700044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.064, y: 0.28, z: 0.0567}
+  m_LocalPosition: {x: 0.0637, y: 0.2728, z: -0.0919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8892357622171588672}
@@ -2003,8 +2003,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.07, z: 0.20995522}
-  m_Center: {x: -0.001001358, y: -0.0030078888, z: -0.056147575}
+  m_Size: {x: 0.14700001, y: 0.0397, z: 0.228}
+  m_Center: {x: 0.058, y: 0.013999999, z: 0.04}
 --- !u!114 &8892357622857700042
 MonoBehaviour:
   m_ObjectHideFlags: 0

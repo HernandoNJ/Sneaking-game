@@ -3,47 +3,43 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class DoorKeyCardTrigger : DoorTrigger
 {
-    [SerializeField] private XRSocketInteractor socket;
+    [SerializeField] private int keyCardLevel = 1;
     [SerializeField] private Renderer lightObject;
     [SerializeField] private Light socketLight;
+    [SerializeField] private XRSocketInteractor socket;
     [SerializeField] private Color defaultColor = Color.yellow;
     [SerializeField] private Color errorColor = Color.red;
     [SerializeField] private Color successColor = Color.green;
-    [SerializeField] private int keycardLevel = 1;
-    
-    
-    private bool _isOpen = false;
+
+    private bool _isOpen;
 
     private void Start()
     {
         SetLightColor(defaultColor);
-        
-        socket.selectEntered.AddListener(KeycardInserted);
-        socket.selectExited.AddListener(KeycardRemoved);
+
+        socket.selectEntered.AddListener(KeyCardInserted);
+        socket.selectExited.AddListener(KeyCardRemoved);
     }
 
-    private void KeycardInserted(SelectEnterEventArgs arg0)
+    private void KeyCardInserted(SelectEnterEventArgs arg0)
     {
         if (!arg0.interactable.TryGetComponent(out KeyCard keyCard))
         {
-            Debug.LogWarning("Inserted object has no keycard");
+            Debug.LogWarning("Inserted object has no keyCard");
             SetLightColor(errorColor);
             return;
         }
 
-        if (keyCard.keycardLevel >= keycardLevel)
+        if (keyCard.keycardLevel >= keyCardLevel)
         {
             SetLightColor(successColor);
             _isOpen = true;
             OpenDoor();
         }
-        else
-        {
-            SetLightColor(errorColor);
-        }
+        else SetLightColor(errorColor);
     }
 
-    private void KeycardRemoved(SelectExitEventArgs arg0)
+    private void KeyCardRemoved(SelectExitEventArgs arg0)
     {
         SetLightColor(defaultColor);
         _isOpen = false;
@@ -53,7 +49,7 @@ public class DoorKeyCardTrigger : DoorTrigger
     protected override void OnTriggerExit(Collider other)
     {
         if (_isOpen) return;
-        
+
         base.OnTriggerExit(other);
     }
 
@@ -62,5 +58,4 @@ public class DoorKeyCardTrigger : DoorTrigger
         lightObject.material.color = color;
         socketLight.color = color;
     }
-
 }
