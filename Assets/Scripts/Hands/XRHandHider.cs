@@ -23,6 +23,8 @@ public class XRHandHider : MonoBehaviour
 
     private void SelectEntered(SelectEnterEventArgs arg0)
     {
+        if (arg0.interactable is BaseTeleportationInteractable) return;
+        
         handRigidbody.gameObject.SetActive(false);
         configJoint.connectedBody = null;
         CancelInvoke(nameof(ShowHands));
@@ -30,6 +32,8 @@ public class XRHandHider : MonoBehaviour
 
     private void SelectExited(SelectExitEventArgs arg0)
     {
+        if (arg0.interactable is BaseTeleportationInteractable) return;
+
         Invoke(nameof(ShowHands),handShowDelay);
     }
 
