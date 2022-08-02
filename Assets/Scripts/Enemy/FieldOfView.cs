@@ -16,12 +16,15 @@ public class FieldOfView : MonoBehaviour
     {
         visibleObjects.Clear();
         
-        Collider[] targets = Physics.OverlapSphere(transform.position, _viewRadius);
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, _viewRadius);
 
-        foreach (var target in targets)
+        foreach (Collider target in targetsInViewRadius)
         {
             if (!target.TryGetComponent(out Creature targetCreature))
-                continue;
+            {
+                targetCreature = target.GetComponentInParent<Creature>();
+                if(!targetCreature) continue;
+            }
 
             if (creature.team == targetCreature.team) continue;
             
