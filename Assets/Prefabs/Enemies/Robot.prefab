@@ -4979,7 +4979,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 476466108703648857}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
