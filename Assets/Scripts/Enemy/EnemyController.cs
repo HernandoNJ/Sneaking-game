@@ -40,19 +40,17 @@ public class EnemyController : MonoBehaviour
         if (_state == EnemyState.Patrol) { UpdatePatrol(); }
         else if (_state == EnemyState.Investigate) { UpdateInvestigate(); }
 
-        //MoveRobot();
+        MoveRobot();
     }
 
     public void InvestigatePoint(Vector3 investigatePoint)
     {
-        Debug.Log("InvestigatePoint");
         SetInvestigationPoint(investigatePoint);
         onInvestigate.Invoke();
     }
 
     private void SetInvestigationPoint(Vector3 investigatePoint)
     {
-        Debug.Log("SetInvestigate");
         _state = EnemyState.Investigate;
         _investigationPoint = investigatePoint;
         _agent.SetDestination(_investigationPoint);
@@ -60,7 +58,6 @@ public class EnemyController : MonoBehaviour
 
     private void PlayerFound(Vector3 investigatePoint)
     {
-        Debug.Log("PlayerFound");
         if (_playerFound) return;
         SetInvestigationPoint(investigatePoint);
         onPlayerFound.Invoke(_fov.creature._head);
@@ -69,7 +66,6 @@ public class EnemyController : MonoBehaviour
 
     private void UpdateInvestigate()
     {
-        Debug.Log("Update Investigate");
         float dist = Vector3.Distance(transform.position, _investigationPoint);
         if ( dist < _threshold)
         {
@@ -80,7 +76,6 @@ public class EnemyController : MonoBehaviour
 
     private void ReturnToPatrol()
     {
-        Debug.Log("Returning to patrol");
         _state = EnemyState.Patrol;
         _waitTimer = 0f;
         _moving = false;
@@ -133,5 +128,4 @@ public class EnemyController : MonoBehaviour
 
         if (_moving && Vector3.Distance(transform.position, _currentPoint.position) < _threshold) { _moving = false; }
     }
-
 }
