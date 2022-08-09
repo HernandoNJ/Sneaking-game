@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable grabInteractable;
     [SerializeField] protected Transform gunBarrel;
-    [SerializeField] private XRSocketInteractor ammoSocket;
+    [SerializeField] protected XRSocketInteractor ammoSocket;
 
     protected AmmoClip _ammoClip;
     

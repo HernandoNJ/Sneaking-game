@@ -7,13 +7,18 @@ namespace Weapons
 {
 public class ShockPistol : Gun
 {
-    [SerializeField] private Renderer _gunRenderer;
+    [SerializeField] private Renderer[] _gunRenderers;
     [SerializeField] private Material[] _ammoScreenMaterials;
-
+  
     protected override void Start()
     {
+        // GetComponent will work only for active gameobjects
+        // The Handedness script defines the left or right active gameobjects on Awake
+        var activeAmmoSocket = GetComponentInChildren<XrTagLimitedSocketInteractor>();
+        ammoSocket = activeAmmoSocket;
+        
         base.Start();
-        Assert.IsNotNull(_gunRenderer, "You have not assigned a renderer to gun " + name);
+        Assert.IsNotNull(_gunRenderers, "You have not assigned a renderer to gun " + name);
         Assert.IsNotNull(_ammoScreenMaterials, "You have not ammo materials to gun " + name);
     }
 
@@ -56,9 +61,15 @@ public class ShockPistol : Gun
 
     private void AssignedScreenMaterial(Material newMaterial)
     {
-        var mats = _gunRenderer.materials;
-        mats[1] = newMaterial;
-        _gunRenderer.materials = mats;
+        foreach (var rend in _gunRenderers)
+        {
+            if (!rend.gameObject.activeSelf) continue;
+            
+            // If the go is active, set the materials
+            var mats = rend.materials;
+            mats[1] = newMaterial;
+            rend.materials = mats;    
+        }
     }
 }
 }
