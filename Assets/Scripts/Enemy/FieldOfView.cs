@@ -6,7 +6,7 @@ public class FieldOfView : MonoBehaviour
 {
     public List<Transform> visibleObjects;
     public Creature creature;
-    
+
     [SerializeField] private Color _gizmoColor = Color.red;
     [SerializeField] private float _viewRadius = 6f;
     [SerializeField] private float _viewAngle = 30f;
@@ -15,16 +15,20 @@ public class FieldOfView : MonoBehaviour
     private void Update()
     {
         visibleObjects.Clear();
-        
-        Collider[] targets = Physics.OverlapSphere(transform.position, _viewRadius);
 
-        foreach (var target in targets)
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, _viewRadius);
+
+        foreach (Collider target in targetsInViewRadius)
         {
             if (!target.TryGetComponent(out Creature targetCreature))
-                continue;
+            {
+                targetCreature = target.GetComponentInParent<Creature>();
+
+                if (!targetCreature) continue;
+            }
 
             if (creature.team == targetCreature.team) continue;
-            
+
             Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
 
             if (Vector3.Angle(transform.forward, directionToTarget) < _viewAngle)
@@ -44,6 +48,7 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = _gizmoColor;
@@ -51,11 +56,12 @@ public class FieldOfView : MonoBehaviour
 
         Handles.DrawWireArc(transform.position, transform.up, transform.forward, _viewAngle, _viewRadius);
         Handles.DrawWireArc(transform.position, transform.up, transform.forward, -_viewAngle, _viewRadius);
-        
+
         Vector3 lineA = Quaternion.AngleAxis(_viewAngle, Vector3.up) * transform.forward;
         Vector3 lineB = Quaternion.AngleAxis(-_viewAngle, Vector3.up) * transform.forward;
         Handles.DrawLine(transform.position, transform.position + lineA * _viewRadius);
         Handles.DrawLine(transform.position, transform.position + lineB * _viewRadius);
     }
+#endif
 
 }
