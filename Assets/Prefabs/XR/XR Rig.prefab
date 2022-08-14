@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1499658914}
   - component: {fileID: 1499658912}
   - component: {fileID: 1499658915}
+  - component: {fileID: 1663751090}
   m_Layer: 8
   m_Name: MinimapCamera
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499658910}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -4, y: 9.48, z: 5}
+  m_LocalPosition: {x: -5, y: 9.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 801916392296264196}
@@ -120,7 +121,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79790ed5966b0054fa8c73ba17b18ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftHandTransform: {fileID: 2600259794474353234}
+  RightHandTransform: {fileID: 7237759964061431693}
   rotationReference: {fileID: 7237759964061431693}
+--- !u!114 &1663751090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499658910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb358b8c32573a419f56d7e1c66c5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handed: 1
+  gameManager: {fileID: 0}
+  leftHandedObjects: []
+  rightHandedObjects: []
 --- !u!1 &801916391195962302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,6 +1049,7 @@ GameObject:
   - component: {fileID: 801916392296264192}
   - component: {fileID: 801916392296264198}
   - component: {fileID: 801916392296264197}
+  - component: {fileID: 1060538052}
   m_Layer: 8
   m_Name: XR Rig
   m_TagString: Untagged
@@ -1140,6 +1160,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 801916392296264192}
+--- !u!114 &1060538052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801916392296264218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb358b8c32573a419f56d7e1c66c5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handed: 0
+  gameManager: {fileID: 0}
+  leftHandedObjects:
+  - {fileID: 2558584513782146279}
+  rightHandedObjects:
+  - {fileID: 7198337535922131256}
 --- !u!1 &801916392888102795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2558584513782146279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2927640725740959440, guid: a9357e7c83be1df47bbbb83e025bf039, type: 3}
+  m_PrefabInstance: {fileID: 801916391653200439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &801916392161848436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1594,3 +1637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7198337535922131256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7549540869899124044, guid: 972e67f2e6b5d5241ab6c18390d7d0f2, type: 3}
+  m_PrefabInstance: {fileID: 801916392161848436}
+  m_PrefabAsset: {fileID: 0}

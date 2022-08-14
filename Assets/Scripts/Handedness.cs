@@ -1,16 +1,19 @@
 using UnityEngine;
 
+public enum Handed { Left, Right}
+
 public class Handedness : MonoBehaviour
 {
-    public enum Handed { Left, Right}
-
     public Handed handed;
 
+    [SerializeField] private GameEventManager gameManager;
     [SerializeField] private GameObject[] leftHandedObjects;
     [SerializeField] private GameObject[] rightHandedObjects;
 
     private void Awake()
     {
+        handed = gameManager.handedness;
+        
         if (handed == Handed.Left)
         {
             foreach (var obj in leftHandedObjects)

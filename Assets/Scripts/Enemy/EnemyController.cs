@@ -85,7 +85,6 @@ public class EnemyController : MonoBehaviour
 
     private void UpdatePatrol()
     {
-        Debug.Log("UpdatePatrol");
         if (!_moving)
         {
             NextPatrolPoint();
@@ -119,7 +118,6 @@ public class EnemyController : MonoBehaviour
 
     private void MoveRobot()
     {
-        Debug.Log("MoveRobot");
         if (!_moving)
         {
             _agent.SetDestination(_currentPoint.position);

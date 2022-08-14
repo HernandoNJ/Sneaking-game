@@ -5,21 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class GameEventManager : MonoBehaviour
 {
+    [Header("Accessibility")]
+    public Handed handedness;
+    
+    [Header("UI")]
     [SerializeField] private CanvasGroup _canvasGroup;
+    
     [SerializeField] private GameObject _failedPanel;
     [SerializeField] private GameObject _successPanel;
+    [SerializeField] private float _canvasFadeTime = 2f;
+    
+    [Header("Audio")]
     [SerializeField] private AudioSource _bmgSource;
     [SerializeField] private AudioClip _caughtMusic;
     [SerializeField] private AudioClip _successMusic;
     
-    [SerializeField] private float _canvasFadeTime = 2f;
-    
     private PlayerInput _playerInput;
-    private bool _isFadingIn;
     private FirstPersonController _fpController;
-    private bool _isGoalReached;
-
+    private bool _isFadingIn;
     private float _fadeLevel;
+    private bool _isGoalReached;
 
     private void Start()
     {
