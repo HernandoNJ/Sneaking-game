@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_playerFound) return;
         SetInvestigationPoint(investigatePoint);
-        onPlayerFound.Invoke(_fov.creature._head);
+        onPlayerFound.Invoke(_fov.creature.head);
         _playerFound = true;
     }
 

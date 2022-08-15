@@ -32,15 +32,17 @@ public class FieldOfView : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, directionToTarget) < _viewAngle)
             {
-                Vector3 headPos = creature._head.position;
-                Vector3 targetHeadPos = targetCreature._head.transform.position;
+                Vector3 headPos = creature.head.position;
+                Vector3 targetHeadPos = targetCreature.head.position;
 
                 Vector3 dirToTargetHead = (targetHeadPos - headPos).normalized;
                 float distToTargetHead = Vector3.Distance(headPos, targetHeadPos);
 
                 if (Physics.Raycast(headPos, dirToTargetHead, distToTargetHead, _blockingLayers))
-                    continue;
-
+                {
+                     continue;
+                }
+                
                 Debug.DrawLine(headPos, targetHeadPos, Color.magenta);
                 visibleObjects.Add(target.transform);
             }
