@@ -4,16 +4,22 @@ using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
-    private enum EnemyState { Patrol = 0, Investigate = 1 }
+    private enum EnemyState { Patrol = 0, Investigate = 1, Stunned = 2 }
 
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _threshold = 0.5f;
     [SerializeField] private float _waitTime = 2f;
+    [SerializeField] private float _stunnedTime = 3f;
     [SerializeField] private PatrolRoute _patrolRoute;
     [SerializeField] private FieldOfView _fov;
     [SerializeField] private EnemyState _state = EnemyState.Patrol;
 
+    public UnityEvent<Transform> onPlayerFound;
+    public UnityEvent onInvestigate;
+    public UnityEvent onReturnToPatrol;
+    public UnityEvent onStunned;
+    
     private bool _moving;
     private Transform _currentPoint;
     private int _routeIndex;
@@ -21,11 +27,8 @@ public class EnemyController : MonoBehaviour
     private Vector3 _investigationPoint;
     private float _waitTimer;
     private bool _playerFound;
-
-    public UnityEvent<Transform> onPlayerFound;
-    public UnityEvent onInvestigate;
-    public UnityEvent onReturnToPatrol;
-
+    private float _stunnedTimer = 0f;
+    
     private void Start()
     {
         _currentPoint = _patrolRoute.route[_routeIndex];
@@ -35,12 +38,38 @@ public class EnemyController : MonoBehaviour
     {
         _animator.SetFloat("Speed", _agent.velocity.magnitude);
 
-        if (_fov.visibleObjects.Count > 0) { PlayerFound(_fov.visibleObjects[0].position); }
+        if (_fov.visibleObjects.Count > 0)
+        {
+            PlayerFound(_fov.visibleObjects[0].position);
+        }
 
-        if (_state == EnemyState.Patrol) { UpdatePatrol(); }
-        else if (_state == EnemyState.Investigate) { UpdateInvestigate(); }
+        if (_state == EnemyState.Patrol)
+        {
+            UpdatePatrol();
+        }
+        else if (_state == EnemyState.Investigate)
+        {
+            UpdateInvestigate();
+        }
+        else if (_state == EnemyState.Stunned)
+        {
+            _stunnedTimer += Time.deltaTime;
 
-        MoveRobot();
+            if (_stunnedTimer >= _stunnedTime)
+            {
+                ReturnToPatrol();
+                _animator.SetBool("Stunned", false);
+            }
+        }
+    }
+
+    public void SetStunned()
+    {
+        _animator.SetBool("Stunned", true);
+        _stunnedTimer = 0f;
+        _state = EnemyState.Stunned;
+        _agent.SetDestination(transform.position);
+        onStunned.Invoke();
     }
 
     public void InvestigatePoint(Vector3 investigatePoint)
@@ -66,16 +95,20 @@ public class EnemyController : MonoBehaviour
 
     private void UpdateInvestigate()
     {
-        float dist = Vector3.Distance(transform.position, _investigationPoint);
-        if ( dist < _threshold)
+        if ( Vector3.Distance(transform.position, _investigationPoint) < _threshold)
         {
             _waitTimer += Time.deltaTime;
-            if (_waitTimer > _waitTime) { ReturnToPatrol(); }
+
+            if (_waitTimer > _waitTime)
+            {
+                ReturnToPatrol();
+            }
         }
     }
 
     private void ReturnToPatrol()
     {
+        Debug.Log("Enemy returning to patrol");
         _state = EnemyState.Patrol;
         _waitTimer = 0f;
         _moving = false;
@@ -92,8 +125,10 @@ public class EnemyController : MonoBehaviour
             _moving = true;
         }
 
-        float dist = Vector3.Distance(transform.position, _currentPoint.position);
-        if (_moving && dist < _threshold) { _moving = false; }
+        if (_moving && Vector3.Distance(transform.position, _currentPoint.position) < _threshold)
+        {
+            _moving = false;
+        }
     }
     
     private void NextPatrolPoint()
@@ -114,16 +149,5 @@ public class EnemyController : MonoBehaviour
 
         if (_routeIndex == 0) _forwardsAlongPath = true;
         _currentPoint = _patrolRoute.route[_routeIndex];
-    }
-
-    private void MoveRobot()
-    {
-        if (!_moving)
-        {
-            _agent.SetDestination(_currentPoint.position);
-            _moving = true;
-        }
-
-        if (_moving && Vector3.Distance(transform.position, _currentPoint.position) < _threshold) { _moving = false; }
     }
 }
