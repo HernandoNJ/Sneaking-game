@@ -65,10 +65,6 @@ public class GameEventManager : MonoBehaviour
         _initialSkyboxExposure = _skyboxMaterial.GetFloat("_Exposure");
     }
 
-    private void Update()
-    {
-        CanvasFading();
-    }
 
     private void EnemyReturnToPatrol()
     {
@@ -80,15 +76,20 @@ public class GameEventManager : MonoBehaviour
 
         if (_isGoalReached) return;
 
+        _failedPanel.SetActive(true);
+
         if (gameMode == GameMode.FP)
         {
             _isFadingIn = true;
-            _failedPanel.SetActive(true);
+
             _fpController.CinemachineCameraTarget.transform.LookAt(enemyThatFoundPlayer);
 
             DeactivateInput();
         }
-        else { StartCoroutine((GameOverFadeOutSaturation(0.4f))); }
+        else
+        {
+            StartCoroutine((GameOverFadeOutSaturation(1f)));
+        }
 
         PlayBGM(_caughtMusic);
     }
@@ -149,22 +150,12 @@ public class GameEventManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    private void CanvasFading()
+    private void PlayBGM(AudioClip newBgm)
     {
-        if (_isFadingIn)
-        {
-            if (_fadeLevel < 1f)
-            {
-                // _canvasFadeTime: amount of seconds to wait until  _fadeLevel reaches 1
-                _fadeLevel += Time.deltaTime / _canvasFadeTime;
-            }
-        }
-        else
-        {
-            if (_fadeLevel > 0f) { _fadeLevel -= Time.deltaTime / _canvasFadeTime; }
-        }
+        if (_bmgSource.clip == newBgm) return; // avoid playing the clip twice
 
-        _canvasGroup.alpha = _fadeLevel;
+        _bmgSource.clip = newBgm;
+        _bmgSource.Play();
     }
 
     private void EnemyInvestigating()
@@ -180,11 +171,24 @@ public class GameEventManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void PlayBGM(AudioClip newBgm)
+    private void Update()
     {
-        if (_bmgSource.clip == newBgm) return; // avoid playing the clip twice
+        if (_isFadingIn)
+        {
+            if (_fadeLevel < 1f)
+            {
+                // _canvasFadeTime: amount of seconds to wait until  _fadeLevel reaches 1
+                _fadeLevel += Time.deltaTime / _canvasFadeTime;
+            }
+        }
+        else
+        {
+            if (_fadeLevel > 0f)
+            {
+                _fadeLevel -= Time.deltaTime / _canvasFadeTime;
+            }
+        }
 
-        _bmgSource.clip = newBgm;
-        _bmgSource.Play();
+        _canvasGroup.alpha = _fadeLevel;
     }
 }
