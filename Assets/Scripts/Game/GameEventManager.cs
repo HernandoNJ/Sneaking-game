@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using StarterAssets;
 using UnityEngine;
@@ -34,6 +35,11 @@ public class GameEventManager : MonoBehaviour
     private float _initialSkyboxAtmosphereThickness;
     private Color _initialSkyboxColor;
     private float _initialSkyboxExposure;
+
+    private void Awake()
+    {
+        handedness = (Handed)PlayerPrefs.GetInt("handedness");
+    }
 
     private void Start()
     {
@@ -171,6 +177,11 @@ public class GameEventManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private void Update()
     {
         if (_isFadingIn)
@@ -190,5 +201,16 @@ public class GameEventManager : MonoBehaviour
         }
 
         _canvasGroup.alpha = _fadeLevel;
+    }
+
+    public void ToggleDominantHand()
+    {
+        if (handedness == Handed.Right) handedness = Handed.Left;
+        else handedness = Handed.Right;
+        
+        PlayerPrefs.SetInt("handedness",(int)handedness);
+        PlayerPrefs.Save();
+        
+        RestartScene();
     }
 }

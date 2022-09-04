@@ -1,4 +1,4 @@
-using System;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -7,6 +7,8 @@ public class XRHandAnimator : MonoBehaviour
 {
     [SerializeField] private ActionBasedController _controller;
     [SerializeField] private Animator _animator;
+    [SerializeField] private MenuManager _menuManager;
+    
     
     private void Start()
     {
@@ -28,7 +30,7 @@ public class XRHandAnimator : MonoBehaviour
 
     private void Fist(InputAction.CallbackContext ctx)
     {
-        _animator.SetBool("Fist", true);
+        if(!_menuManager.gameObject.activeSelf) _animator.SetBool("Fist", true);
     }
 
     private void FistReleased(InputAction.CallbackContext ctx)
