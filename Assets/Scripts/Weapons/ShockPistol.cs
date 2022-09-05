@@ -14,7 +14,7 @@ public class ShockPistol : Gun
     {
         // GetComponent will work only for active gameobjects
         // The Handedness script defines the left or right active gameobjects on Awake
-        var activeAmmoSocket = GetComponentInChildren<XrTagLimitedSocketInteractor>();
+        var activeAmmoSocket = GetComponentInChildren<XRTagLimitedSocketInteractor>();
         ammoSocket = activeAmmoSocket;
         
         base.Start();

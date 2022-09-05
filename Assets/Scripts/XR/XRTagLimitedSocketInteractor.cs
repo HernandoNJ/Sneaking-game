@@ -1,6 +1,6 @@
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XrTagLimitedSocketInteractor : XRSocketInteractor
+public class XRTagLimitedSocketInteractor : XRSocketInteractor
 {
     public string interactableTag;
 
