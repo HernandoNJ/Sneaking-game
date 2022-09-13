@@ -11,6 +11,7 @@ public class SmoothTeleportationAnchor : BaseTeleportationInteractable
     private Vector3 _teleportEnd;
     private bool _isTeleporting;
     private XRRig _rig;
+    private XRCustomTeleportationProvider _customTeleportationProvider;
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
@@ -23,6 +24,10 @@ public class SmoothTeleportationAnchor : BaseTeleportationInteractable
     private void BeginTeleport(XRBaseInteractor interactor)
     {
         _rig = interactor.GetComponentInParent<XRRig>();
+        _customTeleportationProvider = _rig.GetComponent<XRCustomTeleportationProvider>();
+
+        if (_customTeleportationProvider.isTeleporting) return;
+        _customTeleportationProvider.TeleportBegin();
         
         // The interactor (Hand Controller) position
         // Is relative to the XR Rig position (has some offset)
@@ -44,6 +49,7 @@ public class SmoothTeleportationAnchor : BaseTeleportationInteractable
             if (Vector3.Distance(_rig.transform.position, _teleportEnd) < _stoppingDistance)
             {
                 _isTeleporting = false;
+                _customTeleportationProvider.TeleportEnd();
             }
         }
     }
