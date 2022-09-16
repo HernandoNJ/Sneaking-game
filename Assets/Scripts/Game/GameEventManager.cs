@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using StarterAssets;
 using UnityEngine;
@@ -175,6 +174,11 @@ public class GameEventManager : MonoBehaviour
         ResetShaderValues();
         Time.timeScale = 1; // Resume the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void QuitGame()
