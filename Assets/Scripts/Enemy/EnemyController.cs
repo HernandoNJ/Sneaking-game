@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         _currentPoint = _patrolRoute.route[_routeIndex];
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
     }
 
     private void Update()

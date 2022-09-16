@@ -5062,7 +5062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31b0089243c6ad4295eac9e63fd489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _head: {fileID: 7159547663349278925}
+  head: {fileID: 7159547663349278925}
   team: 1
 --- !u!54 &6321540425643102289
 Rigidbody:
@@ -6767,6 +6767,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 131832bba1864994093c93efa339e993, type: 2}
+    - target: {fileID: 7650572137207797303, guid: f0fb3ddffc5d13a45a825aff8d2a7dc0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0fb3ddffc5d13a45a825aff8d2a7dc0, type: 3}
 --- !u!1 &6592133336052018357 stripped
